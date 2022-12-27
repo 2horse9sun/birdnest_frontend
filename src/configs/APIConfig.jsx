@@ -5,7 +5,8 @@ const PORT = "8080";
 const API_PREFIX = "/api";
 // const BASE_URL_LOCALHOST = `${PROTOCOL_HTTP}${HOSTNAME_LOCALHOST}:${PORT}${API_PREFIX}`;
 
-// AWS EC2
+
+// AWS EC2 address
 const EC2_HOSTNAME = "ec2-34-245-23-103.eu-west-1.compute.amazonaws.com";
 const BASE_URL_EC2 = `${PROTOCOL_HTTP}${EC2_HOSTNAME}:${PORT}${API_PREFIX}`;
 

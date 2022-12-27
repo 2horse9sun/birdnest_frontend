@@ -67,11 +67,14 @@ const DataTable = ({rows, columns, rowsPerPageOptions}) => {
   );
 }
 
+
 const ViolationPage = () => {
     const [violationInfos, setViolationInfos] = React.useState([]);
+    // Update violation info every ${interval} seconds
     const [interval, updateInterval] = React.useState(5);
     const [loading, setLoading] = React.useState(false);
     const ref = React.useRef(null)
+
 
     const fetchViolationInfos = () => {
       setLoading(true);
@@ -85,16 +88,19 @@ const ViolationPage = () => {
         setViolationInfos(violationInfos);
         setLoading(false);
       }, 500);
-      
     }
+
 
     React.useEffect(() => {
       fetchViolationInfos();
+
+      // When interval changed, reconfigure setInterval()
       if(ref.current){
         clearInterval(ref.current)
       }
       ref.current = setInterval(fetchViolationInfos, interval * 1000);
       return () => {
+        // Clear setInterval() when unmounted
         if(ref.current){
           clearInterval(ref.current)
         }
@@ -102,9 +108,7 @@ const ViolationPage = () => {
     }, [interval]);
 
 
-
     return (
-        
         <div className="page-container">
           <div className='header-container'>
             <div className='title-container'>
@@ -135,7 +139,6 @@ const ViolationPage = () => {
                 </LoadingButton>
               </div>
             </div>
-
           </div>
           <div className='table-container'>
             <DataTable 
@@ -146,8 +149,8 @@ const ViolationPage = () => {
             />
           </div>
         </div>
-        
     )
 }
+
 
 export default ViolationPage;

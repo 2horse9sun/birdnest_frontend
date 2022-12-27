@@ -1,6 +1,6 @@
 import API_CONFIG from '../configs/APIConfig';
 
-// Encapsulation of Fetch
+//=============Encapsulation of Fetch=======================
 
 export function get(api: string) {
     return async (params?: {}) => {
