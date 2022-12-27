@@ -1,0 +1,40 @@
+name: automated_deploy_to_s3
+
+on:
+  push:
+    branches:
+      - 'main'
+
+
+jobs:
+  build_and_upload:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x, 14.x]
+
+    steps:
+      - 
+        name: Check out the repo
+        uses: actions/checkout@v3
+      - 
+        name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - 
+        run: npm ci
+      - 
+        run: npm run build --if-present
+      - 
+        name: upload files
+        uses: keithweaver/aws-s3-github-action@v1.0.0
+        with:
+          command: cp
+          source: ./build/*
+          destination: s3://birdnest/
+          aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws_region: eu-west-1
+          flags: --recursive
