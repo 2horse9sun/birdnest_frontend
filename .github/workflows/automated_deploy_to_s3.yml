@@ -46,5 +46,5 @@ jobs:
           aws-region: eu-west-1
       # Copy the files from build folder to the S3 bucket
       - name: Deploy to S3
-        run: aws s3 sync . s3://birdnest --acl public-read
+        run: aws s3 sync . s3://birdnest
         working-directory: react-github-actions-build
