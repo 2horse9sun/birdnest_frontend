@@ -50,6 +50,7 @@ function handleData(doAction: Promise<any>) {
                 throw new Error(result);
             }
             const { code, msg, data: { list = undefined } = {} } = result;
+            console.log(msg);
             if (code === 401) {
                 //TODOnavigate to login page
                 return;

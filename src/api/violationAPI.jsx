@@ -1,4 +1,4 @@
-import {get, post} from "../utils/Requester";
+import {get} from "../utils/Requester";
 import APIConfig from "../configs/APIConfig";
 
 const violationAPIPrefix = APIConfig.violationAPIPrefix;
